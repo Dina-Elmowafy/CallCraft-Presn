@@ -1,0 +1,195 @@
+@import url('https://fonts.googleapis.com/css2?family=Alexandria:wght@400;500;600;700;800;900&family=IBM+Plex+Sans+Arabic:wght@300;400;500;600;700&display=swap');
+@import "tailwindcss";
+
+@theme {
+  --font-sans: "IBM Plex Sans Arabic", ui-sans-serif, system-ui, sans-serif;
+  --font-serif: "Alexandria", "IBM Plex Sans Arabic", ui-sans-serif, system-ui, sans-serif;
+  --color-primary: #C5A059;
+  --color-primary-dark: #8F713B;
+  --color-primary-light: #DBBE83;
+}
+
+body {
+  font-family: var(--font-sans);
+  background-color: #F7FAFF;
+  color: #0F172A;
+  direction: rtl; /* For Arabic presentation */
+}
+
+.scene-3d {
+  perspective: 1400px;
+  transform-style: preserve-3d;
+}
+
+.scene-3d .rounded-2xl,
+.scene-3d .rounded-3xl,
+.scene-3d .rounded-\[30px\],
+.scene-3d .rounded-\[40px\],
+.scene-3d .rounded-\[50px\] {
+  border-radius: 28px 40px 30px 46px;
+  box-shadow:
+    0 18px 42px rgba(15, 23, 42, 0.10),
+    0 5px 14px rgba(37, 99, 235, 0.08),
+    inset 0 1px 0 rgba(255, 255, 255, 0.75);
+  transition:
+    border-radius 520ms cubic-bezier(.2, .8, .2, 1),
+    transform 360ms cubic-bezier(.2, .8, .2, 1),
+    box-shadow 360ms cubic-bezier(.2, .8, .2, 1);
+}
+
+.scene-3d .rounded-2xl:hover,
+.scene-3d .rounded-3xl:hover,
+.scene-3d .rounded-\[30px\]:hover,
+.scene-3d .rounded-\[40px\]:hover,
+.scene-3d .rounded-\[50px\]:hover {
+  border-radius: 42px 28px 46px 30px;
+  transform: translateY(-3px);
+  box-shadow:
+    0 26px 58px rgba(15, 23, 42, 0.14),
+    0 10px 26px rgba(37, 99, 235, 0.12),
+    inset 0 1px 0 rgba(255, 255, 255, 0.86);
+}
+
+.surface-3d {
+  position: relative;
+  background: linear-gradient(145deg, rgba(255, 255, 255, 0.96), rgba(238, 247, 255, 0.86));
+  border: 1px solid rgba(148, 163, 184, 0.22);
+  border-radius: 34px 54px 38px 58px;
+  overflow: hidden;
+  box-shadow:
+    0 28px 70px rgba(15, 23, 42, 0.12),
+    0 10px 28px rgba(37, 99, 235, 0.08),
+    inset 0 1px 0 rgba(255, 255, 255, 0.95),
+    inset 0 -1px 0 rgba(15, 23, 42, 0.04);
+  transform: translateZ(0);
+  animation: morph-surface 9s ease-in-out infinite;
+}
+
+.surface-3d::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  border-radius: inherit;
+  background:
+    linear-gradient(135deg, rgba(255, 255, 255, 0.75), transparent 38%),
+    radial-gradient(circle at 14% 10%, rgba(96, 165, 250, 0.16), transparent 32%);
+}
+
+.surface-3d::after {
+  content: "";
+  position: absolute;
+  inset: -45%;
+  pointer-events: none;
+  background: linear-gradient(115deg, transparent 34%, rgba(255, 255, 255, 0.42) 47%, transparent 61%);
+  transform: translateX(-58%) rotate(8deg);
+  animation: liquid-sheen 7.5s ease-in-out infinite;
+}
+
+.lift-3d {
+  box-shadow:
+    0 22px 50px rgba(15, 23, 42, 0.16),
+    0 8px 18px rgba(37, 99, 235, 0.10),
+    inset 0 1px 0 rgba(255, 255, 255, 0.35);
+  transform: translateY(-2px);
+  animation: soft-float 6.5s ease-in-out infinite;
+}
+
+.button-3d {
+  border-radius: 22px 30px 24px 32px;
+  box-shadow:
+    0 14px 28px rgba(15, 23, 42, 0.16),
+    inset 0 1px 0 rgba(255, 255, 255, 0.42);
+  transition: transform 260ms ease, box-shadow 260ms ease, border-radius 360ms ease;
+}
+
+.button-3d:hover {
+  border-radius: 30px 22px 32px 24px;
+  transform: translateY(-4px) scale(1.035);
+  box-shadow:
+    0 22px 42px rgba(15, 23, 42, 0.18),
+    0 8px 22px rgba(37, 99, 235, 0.18),
+    inset 0 1px 0 rgba(255, 255, 255, 0.55);
+}
+
+.logo-3d {
+  filter: drop-shadow(0 16px 24px rgba(15, 23, 42, 0.18));
+  transform: rotateX(4deg) rotateY(-8deg);
+  animation: logo-drift 7s ease-in-out infinite;
+}
+
+.fluid-panel {
+  border-radius: 42px 70px 46px 62px;
+  overflow: hidden;
+  animation: morph-surface 10s ease-in-out infinite;
+}
+
+.fluid-tile {
+  border-radius: 26px 38px 24px 34px;
+  transition: transform 280ms ease, border-radius 360ms ease, box-shadow 280ms ease;
+}
+
+.fluid-tile:hover {
+  border-radius: 38px 26px 34px 24px;
+  transform: translateY(-5px) rotateX(2deg);
+  box-shadow:
+    0 20px 38px rgba(15, 23, 42, 0.13),
+    0 8px 20px rgba(37, 99, 235, 0.12);
+}
+
+@keyframes morph-surface {
+  0%, 100% { border-radius: 34px 54px 38px 58px; }
+  33% { border-radius: 56px 36px 62px 40px; }
+  66% { border-radius: 40px 62px 36px 54px; }
+}
+
+@keyframes liquid-sheen {
+  0%, 18% { transform: translateX(-58%) rotate(8deg); opacity: 0; }
+  36% { opacity: 0.85; }
+  58%, 100% { transform: translateX(58%) rotate(8deg); opacity: 0; }
+}
+
+@keyframes soft-float {
+  0%, 100% { transform: translateY(-2px); }
+  50% { transform: translateY(-8px); }
+}
+
+@keyframes logo-drift {
+  0%, 100% { transform: rotateX(4deg) rotateY(-8deg) translateY(0); }
+  50% { transform: rotateX(7deg) rotateY(-3deg) translateY(-5px); }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .surface-3d,
+  .lift-3d,
+  .logo-3d {
+    animation: none;
+  }
+}
+
+/* Custom scrollbar styling */
+::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+::-webkit-scrollbar-track {
+  background: rgba(226, 232, 240, 0.6);
+}
+::-webkit-scrollbar-thumb {
+  background: rgba(37, 99, 235, 0.25);
+  border-radius: 4px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: rgba(37, 99, 235, 0.45);
+}
+
+/* Glow effects */
+.glow-primary {
+  box-shadow: 0 0 30px rgba(197, 160, 89, 0.15);
+}
+.glow-success {
+  box-shadow: 0 0 30px rgba(16, 185, 129, 0.15);
+}
+.glow-warning {
+  box-shadow: 0 0 30px rgba(245, 158, 11, 0.15);
+}
