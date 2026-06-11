@@ -1,7 +1,6 @@
 node_modules/
 build/
 dist/
-/assets/
 callcraft-presentation.zip
 coverage/
 .DS_Store
