@@ -1,0 +1,6 @@
+{
+  "name": "CallCraft Presentation",
+  "description": "An interactive, highly polished presentation for CallCraft, an AI-powered SaaS for analysis of sales and customer service calls.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
